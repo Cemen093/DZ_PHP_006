@@ -34,8 +34,6 @@ if (isset($_POST['user_login']) or isset($_POST['user_password'])) {
             return;
         }
     }
-    echo '<h2>Пользователь не найден</h2>';
-    return;
 }
 
 if ($_SESSION['login_attempt'] < 3){
