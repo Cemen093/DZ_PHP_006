@@ -1,0 +1,37 @@
+html, body, .box {
+    height: 100%;
+    margin: 0;
+}
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.content{
+    background: green;
+    padding: 20px;
+}
+.content p{
+    background: green;
+    margin: 10px;
+}
+.top{
+    text-align: center;
+    box-shadow: 1px 0 3px rgb(0 0 0);
+}
+
+.error{
+    padding: 35px;
+    background-color: #f00;
+    font-size: 30px;
+}
+
+.message{
+    padding: 5px;
+    color: #0f0;
+    font-size: 20px;
+}
+.red{
+    color: red;
+}
