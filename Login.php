@@ -32,8 +32,6 @@ if (isset($_POST['submit']) and isset($_POST['user_login']) and isset($_POST['us
         if (preg_match('/login='.$login.';password='.$password.'/', $file)){
             $_SESSION['login_attempt'] = 0;
             $_SESSION['Login'] = $login;
-            file_put_contents($filename, "login=".$login.';datetime='.(new DateTime('NOW'))->format('c').
-                ';'.PHP_EOL, FILE_APPEND);
             header("Location: User account.php");
         }
     }
