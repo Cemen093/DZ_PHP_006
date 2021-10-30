@@ -1,7 +1,29 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
+if (isset($_POST["logout"])){
+    session_destroy();
+    header("Location: Login.php");
+}
+
+$message = '';
+if (empty($_SESSION['Login']))
+{
+    $message = '
+        <p>Вы не авторизовались</p>
+        <a href="Login.php">Login</a>
+        <br>
+        <a href="Registrations.php">Registration</a>';
+}
+else
+{
+    $login = $_SESSION['Login'];
+    $message = '
+    <p>Вы зашли как '.$login.'</p>
+    <form action="" method="post">
+        <input type="submit" value="Logout" name="logout">
+    </form>';
+}
+echo '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,20 +37,6 @@ session_start();
 <div class="box">
     <div class="content">
         <h2>User account</h2>
-        <?php
-        if (empty($_SESSION['Login']))
-        {
-            echo '
-                    <p>Вы зашли как гость</p>
-                    <a href="Login.php">Login</a>
-                    <br>
-                    <a href="Registrations.php">Registration</a>';
-        }
-        else
-        {
-            echo '<p>Вы зашли как '.$_SESSION['Login'].'</p>';
-            echo '<a href="Logout.php">Logout</a>';
-        }
-        ?>
+        '.$message.'
     </div>
-</div>
+</div>';

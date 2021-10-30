@@ -12,26 +12,17 @@ html, body, .box {
     background: green;
     padding: 20px;
 }
-.content p{
-    background: green;
-    margin: 10px;
-}
 .top{
     text-align: center;
     box-shadow: 1px 0 3px rgb(0 0 0);
 }
-
 .error{
-    padding: 35px;
-    background-color: #f00;
-    font-size: 30px;
+    color: blue;
+    font-size: 15px;
+    margin: 10px 0px 0px;
 }
-
 .message{
     padding: 5px;
     color: #0f0;
     font-size: 20px;
-}
-.red{
-    color: red;
 }
