@@ -13,7 +13,8 @@ session_id("ad136688-d1c1-4b44-b8a0-fbb9418fb51a");
 session_start();
 
 if (!empty($_SESSION["Login"])) {
-    echo "<h1>Вы уже вошли, эта страница не доступна</h1>";
+    echo '<h1>Вы уже вошли, эта страница не доступна</h1>
+            <a href="user account.php">User account</a>';
     return;
 }
 
@@ -25,12 +26,14 @@ if (isset($_POST['submit']) and isset($_POST['user_login']) and isset($_POST['us
     $password = $_POST['user_password'];
     $_SESSION['login_attempt']++;
 
-    $file_name = 'users.txt';
-    if (file_exists($file_name)){
-        $file = file_get_contents($file_name);
+    $filename = 'users.txt';
+    if (file_exists($filename)){
+        $file = file_get_contents($filename);
         if (preg_match('/login='.$login.';password='.$password.'/', $file)){
             $_SESSION['login_attempt'] = 0;
             $_SESSION['Login'] = $login;
+            file_put_contents($filename, "login=".$login.';datetime='.(new DateTime('NOW'))->format('c').
+                ';'.PHP_EOL, FILE_APPEND);
             header("Location: User account.php");
         }
     }

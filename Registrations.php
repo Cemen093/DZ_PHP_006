@@ -2,7 +2,8 @@
 session_start();
 
 if (!empty($_SESSION["Login"])) {
-    echo "<h1>Вы уже вошли, эта страница не доступна</h1>";
+    echo '<h1>Вы уже вошли, эта страница не доступна</h1>
+            <a href="user account.php">User account</a>';
     return;
 }
 
@@ -21,16 +22,14 @@ if (isset($_POST['submit']))
         $error_message = '<p class="error">login incorrect</p>';
     } else if(!preg_match($pattern_password, $password)){
         $error_message = '<p class="error">password incorrect</p>';
-    } else if (file_exists($filename)){
-        $file = file_get_contents($filename);
-        if (preg_match('/login='.$login.';/', $file)){
-            $error_message = '<p class="error">login already exists</p>';
-        } else {
-            file_put_contents($filename, "login=".$login.';password='.$password.';'.PHP_EOL, FILE_APPEND);
-            $_SESSION['Login'] = $_POST['user_login'];
-            header("Location: User account.php");
-        }
+    } else if (file_exists($filename) and preg_match('/login='.$login.';/', file_get_contents($filename))){
+        $error_message = '<p class="error">login already exists</p>';
+    } else {
+        file_put_contents($filename, "login=" . $login . ';password=' . $password . ';' . PHP_EOL, FILE_APPEND);
+        $_SESSION['Login'] = $_POST['user_login'];
+        header("Location: User account.php");
     }
+
 }
 
 echo'
